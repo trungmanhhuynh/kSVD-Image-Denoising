@@ -19,10 +19,10 @@ For Matlab code, < 1s by googling.
  Tested on Centos 7.0
 
 ### Installing
-At the current project directory
-mkdir build 
->> cmake ../  
->> make  
+At the current project directory  
+mkdir build   
+cmake ../    
+make     
 
 You can try to modify all parameters in main function. 
 
