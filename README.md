@@ -76,10 +76,19 @@ PSNR(inputImg/recoveredImg) = 23.1781
 ## Versioning
 
 Version 1.0 : First Release  
-
+Version 1.1: 
+  - Fixed convert patches to images 
+  - Organized files in dictionary learning toolbox and sparse coding toolbox 
 Future Improvemenst:   
  - Fix bugs might have (I have not tried all different sliding parameters).   
  - Consider the atoms which have not been used, and similliar atoms.  
+ 
+ ## FAQS
+  1. Is program written follow row of column major ? 
+     - The code are written follows column major (elements in array scanned in col first). I would think that will be easier way
+     to implement dictionary matrix. 
+  2. The code run slow, is there any optimazation yet ? 
+      - No optimization is applied yet. We may using OpenMP and GPU for fast processing the implemenation. 
  
  ## Authors
 
