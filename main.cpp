@@ -8,9 +8,8 @@
 
 //local libs
 #include "denoise.h" 
-#include "kSVD.h"
-#include "bmp.h" 
-#include "omp.h"
+#include "dictionarylearningbox/kSVD.h"
+#include "sparsecodingbox/omp.h"
 #include "config.h" 
 #include "utilities.h"
 
@@ -20,8 +19,8 @@ int main(int argc, char** argv){
    parameters param;
    param.sigma = 25 ;
 	param.sliding = 2 ; 
-	param.kSVDiteration = 10 ;
-   param.nAtoms = 441 ;
+	param.kSVDiteration = 1 ;
+   param.nAtoms = 256 ;
 	param.imgWidth = 160 ; 
 	param.imgHeight = 160 ; 
 	param.patchWidth = 8 ; 
@@ -32,7 +31,8 @@ int main(int argc, char** argv){
 	//read image
 	std::vector<float> inputImg = read_image("barbara160.png",param);  
 	
-	std::vector<float> noiseImg = add_noise_to_image(inputImg, param); 
+	//std::vector<float> noiseImg = add_noise_to_image(inputImg, param); 
+	std::vector<float> noiseImg = read_image("noisebarbara160.png",param); 
 
 	std::cout << "PSNR(inputImg/noiseImg) = " << compute_PSNR(inputImg,noiseImg) << std::endl; ; 
 	
@@ -62,6 +62,10 @@ int main(int argc, char** argv){
 	//convert to image
    std::vector<float> imgWeight(param.imgWidth*param.imgHeight,0);
 	std::vector<float> recoverImgVec = patches2img(recoverImgPatches, imgWeight , param); 
+
+	  std::cout << "Weight COl 1   = " << std::endl ;
+      copy(imgWeight.begin() + 0*param.imgHeight, imgWeight.begin() + 1*param.imgHeight, std::ostream_iterator<float>(std::cout, " ")); std::cout << std::endl;
+      std::cin.get() ; 
 
 	//Optimize ||Y - X|| 
 	for(int i = 0 ; i < recoverImgVec.size(); i++){ 

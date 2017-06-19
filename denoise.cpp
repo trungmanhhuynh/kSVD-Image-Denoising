@@ -103,12 +103,12 @@ std::vector<float> img2patches(const std::vector<float> img, parameters param){
 	int nPatch = param.imgWidth*param.imgHeight/param.featureSize ;          //number of non-overlapped patches
 	std::vector<float> imgPatch ;
 
-	for(int j = 0 ; j <= param.imgHeight - param.patchHeight ; j = j + param.sliding){ 
-		for(int i = 0; i <= param.imgWidth - param.patchWidth; i = i + param.sliding){ 
+	 for(int i = 0 ; i <= param.imgWidth - param.patchWidth ; i = i + param.sliding){
+      for(int j = 0; j <= param.imgHeight - param.patchHeight; j = j + param.sliding){
 
 			//std::cout << " i= " << i << "j =" << j << std::endl ;
 			std::vector<float> thisPatch;
-			int startPatchIdx = j*param.imgHeight + i ;
+			int startPatchIdx = i*param.imgHeight + j ;
 
 			//collect each row of patch   
 			for(int k = startPatchIdx ; k < startPatchIdx + param.patchHeight*param.imgHeight ; k  = k + param.imgHeight){
@@ -145,14 +145,14 @@ std::vector<float> patches2img(const std::vector<float> patches, std::vector<flo
 		for(int j = 0; j <= imgHeight - param.patchHeight; j = j + param.sliding){
 
 			//std::cout << " i= " << i << "j =" << j << std::endl ;
-			int startPatchIdx_inImg = i*imgWidth + j ;
+			int startPatchIdx = i*imgHeight + j ;
 			std::vector<float> thisPatch(patches.begin() + patchIdx*param.featureSize,patches.begin() + (patchIdx + 1)*param.featureSize);
 			//std::cout << "thispatch = " << std::endl ; 
 			//copy(thisPatch.begin(), thisPatch.end(), std::ostream_iterator<float>(std::cout, " ")); std::cout << std::endl;
 
 			//copy each row of patch to image
 			int rowIdx = 0  ;
-			for(int k = startPatchIdx_inImg ; k < startPatchIdx_inImg + param.patchHeight*imgWidth ; k  = k + imgWidth){
+			for(int k = startPatchIdx ; k < startPatchIdx + param.patchHeight*imgHeight ; k  = k + imgHeight){
 				std::transform(thisPatch.begin() + rowIdx*param.patchWidth, thisPatch.begin() + (rowIdx +1)*param.patchWidth, 
 									img.begin() + k, img.begin() + k, std::plus<float>());
             std::transform(blockWeight.begin() + rowIdx*param.patchWidth ,blockWeight.begin() + (rowIdx + 1)*param.patchWidth,
