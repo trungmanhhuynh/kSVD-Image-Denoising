@@ -54,7 +54,7 @@ param.kSVDiteration = 10
 training iteration = 0  
 Finding sparse code...   
  Updating dictionary   
- resconstruction Error = 23.0418  
+ resconstruction Error = 23.0418     
 training iteration = 1
 Finding sparse code...   
  Updating dictionary   
