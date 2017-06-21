@@ -13,6 +13,14 @@
 #ifndef OMP_H
 #define OMP_H
 
+struct OMPParameters{
+   int nAtoms ;               //number of atoms of dictionary 
+   int featureSize ;          //number of rows of dictionary 
+   int L ;                    //sparsity level, #number of non-zero element
+   int debug ;
+};
+
+
 
 // ****************************************************************
 // BASIC MATCHING PURSUIT ALGORITM FOR SPARSE CODING 
@@ -21,7 +29,7 @@
 // Output: + sparse coding of input vector [ K * number of input vector]
 //         + atomUsedbyInput [K * vector<int> ] 
 //*****************************************************************
-std::vector<float> omp(std::vector<float> inputData, std::vector<float> dictionary, parameters param) ; 
+std::vector<float> omp(std::vector<float> inputData, std::vector<float> dictionary, OMPParameters param) ; 
 
 #endif
 

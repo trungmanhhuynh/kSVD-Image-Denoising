@@ -1,6 +1,6 @@
-#include "omp.h" 
-#include "utilities.h" 
-#include "iterator" 
+#include "omp.h"				//orthorgonal matching pursuit 
+#include "utilities/utilities.h" 
+#include <iterator> 
 
 // ****************************************************************
 // MATCHING PURSUIT ALGORITM (OMP) FOR SPARSE CODING 
@@ -9,16 +9,17 @@
 // Output: + sparse coding of input vector [ K * number of input vector]
 //         + atomUsedbyInput [K * vector<int> ] 
 //*****************************************************************
-std::vector<float> omp(std::vector<float> inputData, std::vector<float> dictionary,parameters param){
+std::vector<float> omp(std::vector<float> inputData, std::vector<float> dictionary,OMPParameters param){
 
-   std::vector<float> sparseCode ;
    int inputSize = inputData.size()/param.featureSize;
+	int inputIdx ; 
+   std::vector<float> sparseCode(inputSize*param.nAtoms) ;
 
    float weight =0  ;
    int  chosenAtomIdx  ;
 
    //1. For each input patch
-   for(int inputIdx = 0 ; inputIdx < inputSize ; inputIdx++){
+   for(inputIdx = 0 ; inputIdx < inputSize ; inputIdx++){
 
       //std::cout <<BOLDRED << "inputIdx = " << inputIdx << RESET <<  std::endl ;
       //Assign residual vector = input patch 
@@ -80,7 +81,7 @@ std::vector<float> omp(std::vector<float> inputData, std::vector<float> dictiona
 
          //calcualte residual R = R - chosenAtomList*weighList ; 
          cv::Mat tempMat = chosenAtomMat*weightList ; 
-			std::vector<float> tempVec = mat2vector(tempMat.clone());
+			std::vector<float> tempVec = mat2vector_v1(tempMat.clone());
 			std::transform(thisInput.begin(),thisInput.end(), tempVec.begin(),residualVec.begin(),std::minus<float>());
 		
 			 
@@ -97,14 +98,14 @@ std::vector<float> omp(std::vector<float> inputData, std::vector<float> dictiona
 	      //std::cin.get();  
 	
 			//std::cout << BOLDGREEN << "l2 norm (residual ) = " << l2_norm(residualVec) << RESET << std::endl ; 
-			if(l2_norm(residualVec) < 0.001) break ; 
+			if(l2norm_vec(residualVec) < 0.001) break ; 
 		
          //increase iteration
          iter = iter + 1;
       }
 
 		 //copy(thisSparseCode.begin(), thisSparseCode.begin() + 64, std::ostream_iterator<float>(std::cout, " ")); std::cout << std::endl;	
-      sparseCode.insert(sparseCode.end(),thisSparseCode.begin(),thisSparseCode.end());
+      sparseCode.insert(sparseCode.begin() + inputIdx*param.nAtoms,thisSparseCode.begin(),thisSparseCode.end());
    }
 
    return sparseCode ;

@@ -22,22 +22,16 @@
 #define BOLDBLUE    "\033[1m\033[34m"      /* Bold Blue */
 #define BOLDMAGENTA "\033[1m\033[35m"      /* Bold Magenta */
 
-typedef std::vector<std::vector<float> > vector2d_float ;
-typedef std::vector<std::vector<int> > vector2d_int ;
-
-
-struct parameters{
-	float sigma; 
-	int sliding; 
-   int kSVDiteration ;
-   int nAtoms ;               //number of atoms of dictionary 
-   int featureSize ;    		//number of rows of dictionary 
-	int imgWidth ;
-	int imgHeight ; 
-	int patchWidth ; 
-	int patchHeight ; 
-	int L ; 							//sparsity level, #number of non-zero element
-   int debug ;
-};
+//Changes these paramaters to make effect on results 
+const	int sigma = 25 ; 
+const	int sliding = 4; 
+const	int imgWidth = 160 ; 		//image is resized to this value
+const	int imgHeight = 160 ; 	   //image is resized to this value 
+const int patchWidth = 8 ; 
+const	int patchHeight = 8 ; 
+const	int featureSize = patchWidth*patchHeight; 
+const int numberIterationOfkSVD = 10 ;
+const int numberAtomsOfDictionary = 256 ;
+const int numberOfCoefficients = 5 ;   
 #endif
 
