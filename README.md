@@ -33,68 +33,68 @@ You can try to modify all parameters in main function.
 Here I run the test with following parameters 
 
 //Changes these paramaters to make effect on results 
-const int sigma = 25 ;
+const int sigma = 25 ;  
 const int sliding = 2;
-const int imgWidth = 160 ;       //image is resized to this value
-const int imgHeight = 160 ;      //image is resized to this value 
-const int patchWidth = 8 ;
-const int patchHeight = 8 ;
-const int featureSize = patchWidth*patchHeight;
-const int numberIterationOfkSVD = 10 ; 
-const int numberAtomsOfDictionary = 256 ;
-const int numberOfCoefficients = 5 ;
+const int imgWidth = 160 ;       //image is resized to this value  
+const int imgHeight = 160 ;      //image is resized to this value   
+const int patchWidth = 8 ;  
+const int patchHeight = 8 ;  
+const int featureSize = patchWidth*patchHeight;  
+const int numberIterationOfkSVD = 10 ;   
+const int numberAtomsOfDictionary = 256 ;  
+const int numberOfCoefficients = 5 ;  
 
    
-  Results: (It is important to see the reduced resconstruction error, and PNSR)  
+  Results: (It is important to see the reduced resconstruction error, and PNSR)    
 
-[manh@node18 build]$ ./denoise 
-PSNR(inputImg/noiseImg) = 20.2078
-number of patches = 5929
-param.kSVDiteration = 10
-training iteration = 0
-Finding sparse code... 
- Updating dictionary 
- resconstruction Error = 23.0418
+[manh@node18 build]$ ./denoise   
+PSNR(inputImg/noiseImg) = 20.2078  
+number of patches = 5929  
+param.kSVDiteration = 10  
+training iteration = 0  
+Finding sparse code...   
+ Updating dictionary   
+ resconstruction Error = 23.0418  
 training iteration = 1
-Finding sparse code... 
+Finding sparse code...   
+ Updating dictionary   
+ resconstruction Error = 22.4011  
+training iteration = 2  
+Finding sparse code...   
+ Updating dictionary   
+ resconstruction Error = 22.0507  
+training iteration = 3  
+Finding sparse code...   
  Updating dictionary 
- resconstruction Error = 22.4011
-training iteration = 2
-Finding sparse code... 
- Updating dictionary 
- resconstruction Error = 22.0507
-training iteration = 3
-Finding sparse code... 
- Updating dictionary 
- resconstruction Error = 21.8134
-training iteration = 4
-Finding sparse code... 
- Updating dictionary 
- resconstruction Error = 21.6354
-training iteration = 5
-Finding sparse code... 
- Updating dictionary 
- resconstruction Error = 21.4912
-training iteration = 6
-Finding sparse code... 
- Updating dictionary 
- resconstruction Error = 21.3799
-training iteration = 7
-Finding sparse code... 
- Updating dictionary 
- resconstruction Error = 21.2703
-training iteration = 8
-Finding sparse code... 
- Updating dictionary 
- resconstruction Error = 21.1875
-training iteration = 9
-Finding sparse code... 
- Updating dictionary 
- resconstruction Error = 21.1174
+ resconstruction Error = 21.8134  
+training iteration = 4  
+Finding sparse code...   
+ Updating dictionary   
+ resconstruction Error = 21.6354  
+training iteration = 5  
+Finding sparse code...   
+ Updating dictionary   
+ resconstruction Error = 21.4912  
+training iteration = 6  
+Finding sparse code...   
+ Updating dictionary   
+ resconstruction Error = 21.3799  
+training iteration = 7  
+Finding sparse code...   
+ Updating dictionary   
+ resconstruction Error = 21.2703  
+training iteration = 8  
+Finding sparse code...   
+ Updating dictionary   
+ resconstruction Error = 21.1875  
+training iteration = 9  
+Finding sparse code...   
+ Updating dictionary   
+ resconstruction Error = 21.1174  
 
-Denoising image ...
- imgWidth = 160
- imgHeight = 160
+Denoising image ...  
+ imgWidth = 160    
+ imgHeight = 160  
 
 | Original Image | Noise Image (sigma  =25) PSNR = 20.2078| Original Dictionary |
 | ------------- | ------------- |-------------|
