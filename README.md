@@ -55,7 +55,7 @@ training iteration = 0
 Finding sparse code...   
  Updating dictionary   
  resconstruction Error = 23.0418     
-training iteration = 1
+training iteration = 1  
 Finding sparse code...   
  Updating dictionary   
  resconstruction Error = 22.4011  
