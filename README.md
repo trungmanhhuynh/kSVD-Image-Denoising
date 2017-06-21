@@ -75,13 +75,17 @@ training iteration = 9
 Denoising image ...  
 PSNR(inputImg/recoveredImg) = 23.1781  
 
-| First Header  | Noise Image (sigma  =25) PSNR = 20.2078| Original Dictionary |
+| Original Image | Noise Image (sigma  =25) PSNR = 20.2078| Original Dictionary |
 | ------------- | ------------- |-------------|
 | 
 ![image](https://user-images.githubusercontent.com/13492723/27363750-8f01c0cc-55f3-11e7-974d-65847997e29a.png)l  | ![image](https://user-images.githubusercontent.com/13492723/27363760-9803ebb4-55f3-11e7-8258-e82740163db1.png)  |![image](https://user-images.githubusercontent.com/13492723/27363764-9fe0872a-55f3-11e7-8498-83bd535f61ad.png)|
 
- 
-
+ | Original Image | Recovered Image PSNR = 25.4675| 10th Dictionary |
+| ------------- | ------------- |-------------|
+| 
+![image](https://user-images.githubusercontent.com/13492723/27363750-8f01c0cc-55f3-11e7-974d-65847997e29a.png)l  | 
+![image](https://user-images.githubusercontent.com/13492723/27363944-b9d9cbd6-55f4-11e7-8dd1-ae62f14d064a.png) |
+![image](https://user-images.githubusercontent.com/13492723/27363953-c464229a-55f4-11e7-9691-44bfe77baf37.png)|
 
 
 ## Versioning
@@ -99,7 +103,12 @@ Future Improvemenst:
      - The code are written follows column major (elements in array scanned in col first). I would think that will be easier way
      to implement dictionary matrix. 
   2. The code run slow, is there any optimazation yet ? 
-      - No optimization is applied yet. We may using OpenMP and GPU for fast processing the implemenation. 
+      - No optimization is applied yet. We may using OpenMP and GPU for fast processing the implemenation.  
+      
+  3. Can we make a better results ?
+    - Definitely. It is obvious that in this code, we trained dictionary on noised image only (not using DCT or global dictionary).
+    Thus, the results can not be comparable with using pre-trained DCT or global one. 
+  
  
  ## Authors
 
