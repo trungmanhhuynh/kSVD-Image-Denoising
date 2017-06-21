@@ -77,15 +77,11 @@ PSNR(inputImg/recoveredImg) = 23.1781
 
 | Original Image | Noise Image (sigma  =25) PSNR = 20.2078| Original Dictionary |
 | ------------- | ------------- |-------------|
-|![image](https://user-images.githubusercontent.com/13492723/27363750-8f01c0cc-55f3-11e7-974d-65847997e29a.png)|
-![image](https://user-images.githubusercontent.com/13492723/27363760-9803ebb4-55f3-11e7-8258-e82740163db1.png)|
-![image](https://user-images.githubusercontent.com/13492723/27363764-9fe0872a-55f3-11e7-8498-83bd535f61ad.png)|
+| ![image](https://user-images.githubusercontent.com/13492723/27363750-8f01c0cc-55f3-11e7-974d-65847997e29a.png) | ![image](https://user-images.githubusercontent.com/13492723/27363760-9803ebb4-55f3-11e7-8258-e82740163db1.png) | ![image](https://user-images.githubusercontent.com/13492723/27363764-9fe0872a-55f3-11e7-8498-83bd535f61ad.png) |
 
  | Original Image | Recovered Image PSNR = 25.4675| 10th Dictionary |
 | ------------- | ------------- |-------------|
-|![image](https://user-images.githubusercontent.com/13492723/27363750-8f01c0cc-55f3-11e7-974d-65847997e29a.png)| 
-![image](https://user-images.githubusercontent.com/13492723/27363944-b9d9cbd6-55f4-11e7-8dd1-ae62f14d064a.png)|
-![image](https://user-images.githubusercontent.com/13492723/27363953-c464229a-55f4-11e7-9691-44bfe77baf37.png)|
+| ![image](https://user-images.githubusercontent.com/13492723/27363750-8f01c0cc-55f3-11e7-974d-65847997e29a.png) | ![image](https://user-images.githubusercontent.com/13492723/27363944-b9d9cbd6-55f4-11e7-8dd1-ae62f14d064a.png) | ![image](https://user-images.githubusercontent.com/13492723/27363953-c464229a-55f4-11e7-9691-44bfe77baf37.png) |
 
 
 ## Versioning
