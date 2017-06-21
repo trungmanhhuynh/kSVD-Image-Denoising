@@ -32,48 +32,69 @@ You can try to modify all parameters in main function.
 
 Here I run the test with following parameters 
 
-   //set parameters  
-   parameters param;  
-   param.sigma = 25 ;  
-   param.sliding = 4 ;  
-   param.kSVDiteration = 10 ;  
-   param.nAtoms = 256 ;  
-   param.imgWidth = 160 ;  
-   param.imgHeight = 160 ;  
-   param.patchWidth = 8 ;  
-   param.patchHeight = 8 ;  
-   param.featureSize = 8*8 ;  
-   param.L = 5 ;  
+//Changes these paramaters to make effect on results 
+const int sigma = 25 ;
+const int sliding = 2;
+const int imgWidth = 160 ;       //image is resized to this value
+const int imgHeight = 160 ;      //image is resized to this value 
+const int patchWidth = 8 ;
+const int patchHeight = 8 ;
+const int featureSize = patchWidth*patchHeight;
+const int numberIterationOfkSVD = 10 ; 
+const int numberAtomsOfDictionary = 256 ;
+const int numberOfCoefficients = 5 ;
+
    
   Results: (It is important to see the reduced resconstruction error, and PNSR)  
 
-[manh@node18 build]$ ./main  
-PSNR(inputImg/noiseImg) = 20.2078  
-number of patches = 1521  
-param.kSVDiteration = 10  
-training iteration = 0  
- resconstruction Error = 20.4946  
-training iteration = 1  
- resconstruction Error = 19.6167  
-training iteration = 2  
- resconstruction Error = 19.2629  
-training iteration = 3  
- resconstruction Error = 19.0181  
-training iteration = 4  
- resconstruction Error = 18.8327  
-training iteration = 5  
- resconstruction Error = 18.7264  
-training iteration = 6  
- resconstruction Error = 18.6484  
-training iteration = 7  
- resconstruction Error = 18.5715  
-training iteration = 8  
- resconstruction Error = 18.5231  
-training iteration = 9  
- resconstruction Error = 18.5006  
+[manh@node18 build]$ ./denoise 
+PSNR(inputImg/noiseImg) = 20.2078
+number of patches = 5929
+param.kSVDiteration = 10
+training iteration = 0
+Finding sparse code... 
+ Updating dictionary 
+ resconstruction Error = 23.0418
+training iteration = 1
+Finding sparse code... 
+ Updating dictionary 
+ resconstruction Error = 22.4011
+training iteration = 2
+Finding sparse code... 
+ Updating dictionary 
+ resconstruction Error = 22.0507
+training iteration = 3
+Finding sparse code... 
+ Updating dictionary 
+ resconstruction Error = 21.8134
+training iteration = 4
+Finding sparse code... 
+ Updating dictionary 
+ resconstruction Error = 21.6354
+training iteration = 5
+Finding sparse code... 
+ Updating dictionary 
+ resconstruction Error = 21.4912
+training iteration = 6
+Finding sparse code... 
+ Updating dictionary 
+ resconstruction Error = 21.3799
+training iteration = 7
+Finding sparse code... 
+ Updating dictionary 
+ resconstruction Error = 21.2703
+training iteration = 8
+Finding sparse code... 
+ Updating dictionary 
+ resconstruction Error = 21.1875
+training iteration = 9
+Finding sparse code... 
+ Updating dictionary 
+ resconstruction Error = 21.1174
 
-Denoising image ...  
-PSNR(inputImg/recoveredImg) = 23.1781  
+Denoising image ...
+ imgWidth = 160
+ imgHeight = 160
 
 | Original Image | Noise Image (sigma  =25) PSNR = 20.2078| Original Dictionary |
 | ------------- | ------------- |-------------|
