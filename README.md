@@ -75,18 +75,14 @@ training iteration = 9
 Denoising image ...  
 PSNR(inputImg/recoveredImg) = 23.1781  
 
-| First Header  | Noise Image (sigma  =25)  |
-| ------------- | ------------- |
+| First Header  | Noise Image (sigma  =25) PSNR = 20.2078| Original Dictionary |
+| ------------- | ------------- |-------------|
 | 
-![image](https://user-images.githubusercontent.com/13492723/27363750-8f01c0cc-55f3-11e7-974d-65847997e29a.png)l  | ![image](https://user-images.githubusercontent.com/13492723/27363760-9803ebb4-55f3-11e7-8258-e82740163db1.png)  |
-
-
+![image](https://user-images.githubusercontent.com/13492723/27363750-8f01c0cc-55f3-11e7-974d-65847997e29a.png)l  | ![image](https://user-images.githubusercontent.com/13492723/27363760-9803ebb4-55f3-11e7-8258-e82740163db1.png)  |![image](https://user-images.githubusercontent.com/13492723/27363764-9fe0872a-55f3-11e7-8498-83bd535f61ad.png)|
 
  
 
 
-Orginal Dictionary  
-![image](https://user-images.githubusercontent.com/13492723/27363764-9fe0872a-55f3-11e7-8498-83bd535f61ad.png)
 
 ## Versioning
 
