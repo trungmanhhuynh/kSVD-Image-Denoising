@@ -18,7 +18,8 @@ int main(int argc, char** argv){
 	//read image
 	std::vector<float> inputImg = read_image("barbara160.png");  
 
-	std::vector<float> noiseImg = add_noise_to_image(inputImg, imgWidth,imgHeight,sigma); 
+	std::vector<float> noiseImg = read_image("noisebarbara160.png");
+	//std::vector<float> noiseImg = add_noise_to_image(inputImg, imgWidth,imgHeight,sigma); 
 
 	std::cout << "PSNR(inputImg/noiseImg) = " << compute_PSNR(inputImg,noiseImg) << std::endl; ; 
 
@@ -31,15 +32,16 @@ int main(int argc, char** argv){
 	kSVDParam.kSVDiteration = numberIterationOfkSVD ;
 	kSVDParam.nAtoms = numberAtomsOfDictionary ;
 	kSVDParam.featureSize = featureSize;
-
+	kSVDParam.sparsityThres = 5 ; 
 	//Intilize dictionary 
 	std::vector<float> dictionary = kSVD_initialize_dictionary(noisePatches,kSVDParam) ; 
 
 	//Write dictionary to image 
 	show_dictionary(dictionary, kSVDParam.featureSize, kSVDParam.nAtoms); 
 
-	//Start K-SVD dictionary learning 
-	kSVD(noisePatches,dictionary,kSVDParam); 		
+	//Start K-SVD dictionary learning
+	std::vector<float> sparseCode(kSVDParam.nAtoms*noisePatches.size()/featureSize );  
+	kSVD(sparseCode,dictionary,noisePatches,kSVDParam); 		
 
 	show_dictionary(dictionary, kSVDParam.featureSize, kSVDParam.nAtoms);
 
@@ -51,7 +53,7 @@ int main(int argc, char** argv){
 	OMPParam.nAtoms = kSVDParam.nAtoms; 
 	OMPParam.L = numberOfCoefficients ; 
 	OMPParam.featureSize = featureSize ; 
-	std::vector<float> sparseCode = omp(noisePatches, dictionary ,OMPParam);
+	sparseCode = omp_v1(noisePatches, dictionary ,OMPParam);
 
 	//Resconstruct noisy image
 	std::vector<float> recoverImgPatches = matrix_multiply(dictionary,sparseCode,featureSize,OMPParam.nAtoms,noisePatches.size()/OMPParam.featureSize) ;		

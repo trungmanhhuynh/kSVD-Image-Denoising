@@ -7,6 +7,16 @@
 #include <iostream>
 #include <iomanip>            //std::setprecision
 
+//cublas
+#include <cublas_v2.h>
+#include <curand.h>
+
+//thrust
+#include <thrust/host_vector.h>
+#include <thrust/device_vector.h>
+
+
+
 #ifndef UTILITIES_H 
 #define UTILITIES_H 
 
@@ -94,15 +104,27 @@ float l2norm_vec(std::vector<float> const& u);
 float inner_product(std::vector<float> u, std::vector<float> v);
 
 //*************************************************************
-// Matrix multiply C = A*B (Row major )  
+// Matrix multiply C = A*B  
 //***********************************************************
 std::vector<float> matrix_multiply(std::vector<float> A, std::vector<float> B , int nRows_A, int nCols_A, int nCols_B);
+
+
+//C = alpha*op(A)*op(B) + beta*C ; 
+void mmul_cublas(std::vector<float> A, cublasOperation_t transa,  std::vector<float> B, cublasOperation_t transb ,std::vector<float> &C, int Arows, int Acols, int Bcols); 
+
+//matrix-vector multiplication 
+//y = α op ( A ) x + β y
+
+void mvmul_cublas(std::vector<float> A, cublasOperation_t transa,  std::vector<float> x, std::vector<float> &y, int Arows, int Acols ); 
 
 
 //**********************************************************
 // compute variance of a vector 
 //*********************************************************
 float compute_variance(const std::vector<float> inVector);
+
+//Get current time 
+double get_seconds() ;
 
 #endif 
 

@@ -13,7 +13,7 @@ std::vector<float> omp(std::vector<float> inputData, std::vector<float> dictiona
 
    int inputSize = inputData.size()/param.featureSize;
 	int inputIdx ; 
-   std::vector<float> sparseCode(inputSize*param.nAtoms) ;
+   std::vector<float> sparseCodeRes(inputSize*param.nAtoms) ;
 
    float weight =0  ;
    int  chosenAtomIdx  ;
@@ -21,7 +21,7 @@ std::vector<float> omp(std::vector<float> inputData, std::vector<float> dictiona
    //1. For each input patch
    for(inputIdx = 0 ; inputIdx < inputSize ; inputIdx++){
 
-      //std::cout <<BOLDRED << "inputIdx = " << inputIdx << RESET <<  std::endl ;
+      std::cout <<BOLDRED << "inputIdx = " << inputIdx << RESET <<  std::endl ;
       //Assign residual vector = input patch 
       std::vector<float> thisInput(inputData.begin() + inputIdx*param.featureSize, inputData.begin() + (inputIdx+1)*param.featureSize);
 		std::vector<float> residualVec(thisInput.begin(),thisInput.end()); 	
@@ -37,7 +37,7 @@ std::vector<float> omp(std::vector<float> inputData, std::vector<float> dictiona
 
          float maxProduct = -pow(2,32) ;
          std::vector<float> chosenAtom(param.featureSize);
-         //find the best match atom   
+         //find the best match atom  
          for(int atomIdx = 0 ; atomIdx < param.nAtoms; atomIdx++){
             std::vector<float> thisAtom(dictionary.begin() + atomIdx*param.featureSize, dictionary.begin() + (atomIdx+1)*param.featureSize);
             float product = inner_product(thisAtom,residualVec);
@@ -47,8 +47,8 @@ std::vector<float> omp(std::vector<float> inputData, std::vector<float> dictiona
                weight = product ;
                std::copy(thisAtom.begin(),thisAtom.end(),chosenAtom.begin());  ;
                // std::cout << "select atom idx = " << chosenAtomIdx <<  std::endl ;
-                //std::cout << "max product =" << maxProduct <<  std::endl ;
-
+               // std::cout << "max product =" << maxProduct <<  std::endl ;
+					
             }
          }
 
@@ -105,9 +105,9 @@ std::vector<float> omp(std::vector<float> inputData, std::vector<float> dictiona
       }
 
 		 //copy(thisSparseCode.begin(), thisSparseCode.begin() + 64, std::ostream_iterator<float>(std::cout, " ")); std::cout << std::endl;	
-      sparseCode.insert(sparseCode.begin() + inputIdx*param.nAtoms,thisSparseCode.begin(),thisSparseCode.end());
+      sparseCodeRes.insert(sparseCodeRes.begin() + inputIdx*param.nAtoms,thisSparseCode.begin(),thisSparseCode.end());
    }
-
-   return sparseCode ;
+	
+   return sparseCodeRes ;
 
 }

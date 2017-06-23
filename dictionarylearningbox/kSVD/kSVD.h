@@ -15,6 +15,7 @@ struct kSVDParameters{
    int nAtoms ;               //number of atoms of dictionary 
    int featureSize ;          //number of rows of dictionary 
    int debug ;
+	int sparsityThres; 
 };
 
 //*********************************************************
@@ -45,7 +46,7 @@ void kSVD_update_dictionary(std::vector<float> inputData,std::vector<float> &spa
 // * kSVD algorithm 
 // * CPU version  
 // * **************************************************************
-void kSVD(std::vector<float> sparseCode, std::vector<float> &dictionary, kSVDParameters param); 
+void kSVD(std::vector<float> &sparseCode, std::vector<float> &dictionary, std::vector<float> inputData, kSVDParameters param); 
 
 
 //************************************************************

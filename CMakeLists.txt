@@ -6,9 +6,14 @@ include_directories(./)
 
 find_package( OpenCV REQUIRED )
 
-file(GLOB utilities utilities/*.cpp)
+find_package( CUDA REQUIRED )
 
-file(GLOB sparsecoding sparsecodingbox/omp.cpp) 
+set(CUDA_NVCC_FLAGS ${CUDA_NVCC_FLAGS};-gencode arch=compute_60,code=sm_60)
+
+file(GLOB utilities utilities/*.cpp utilities/*.cu)
+
+file(GLOB sparsecoding sparsecodingbox/omp.cpp
+							  sparsecodingbox/omp_v1.cpp) 
 
 file(GLOB kSVD dictionarylearningbox/kSVD/kSVD.cpp) 
 
@@ -16,8 +21,8 @@ file(GLOB kSVD dictionarylearningbox/kSVD/kSVD.cpp)
 SET(GCC_COVERAGE_COMPILE_FLAGS "-fopenmp")
 SET(CMAKE_CXX_FLAGS  "${CMAKE_CXX_FLAGS} ${GCC_COVERAGE_COMPILE_FLAGS}" )
 
-add_executable(denoise denoise.cpp ${sparsecoding} ${kSVD} ${utilities})
+cuda_add_executable(denoise denoise.cpp ${sparsecoding} ${kSVD} ${utilities})
        
-target_link_libraries(denoise ${OpenCV_LIBS})
+target_link_libraries(denoise ${OpenCV_LIBS} cublas cusolver)
 
  

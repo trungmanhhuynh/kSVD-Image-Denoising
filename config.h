@@ -24,7 +24,7 @@
 
 //Changes these paramaters to make effect on results 
 const	int sigma = 25 ; 
-const	int sliding = 4; 
+const	int sliding = 2; 
 const	int imgWidth = 160 ; 		//image is resized to this value
 const	int imgHeight = 160 ; 	   //image is resized to this value 
 const int patchWidth = 8 ; 

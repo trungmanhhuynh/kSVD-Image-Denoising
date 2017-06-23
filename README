@@ -1,0 +1,30 @@
+An C++ implementation of Image Resconstruction using Dictionary Learning KSV [1]. 
+
+In this implemenation, greedy matching pursuit algorithm is used for finding sparse coding. 
+
+Dataset: 
+ We used face dataset Faces94 http://cswww.essex.ac.uk/mv/allfaces/faces94.html for
+ the experiments. We have randomly selected 10 images for training and 1 other image for testing.
+ All color images are converted to gray-scale image. 500 random patches are chosen for training. 
+
+Required libraries: 
+
+
+Tested Enviroment 
+
+
+Compile: 
+
+
+
+Run: 
+
+
+
+Reference:
+
+[1] Aharon, Michal, Michael Elad, and Alfred Bruckstein. "K-SVD: An algorithm for designing overcomplete dictionaries for sparse representation." 
+IEEE Transactions on signal processing 54.11 (2006): 4311-4322
+
+
+

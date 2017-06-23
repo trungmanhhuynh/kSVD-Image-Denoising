@@ -31,5 +31,7 @@ struct OMPParameters{
 //*****************************************************************
 std::vector<float> omp(std::vector<float> inputData, std::vector<float> dictionary, OMPParameters param) ; 
 
+std::vector<float> omp_v1(std::vector<float> inputData, std::vector<float> dictionary, OMPParameters param) ;
+
 #endif
 

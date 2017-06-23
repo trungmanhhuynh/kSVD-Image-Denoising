@@ -137,7 +137,7 @@ void kSVD_update_dictionary(std::vector<float> inputData, std::vector<float> &sp
 // * kSVD algorithm 
 // * CPU version  
 // * **************************************************************
-void kSVD(std::vector<float> inputData, std::vector<float> &dictionary, kSVDParameters param){
+void kSVD(std::vector<float> &sparseCode, std::vector<float> &dictionary, std::vector<float> inputData, kSVDParameters param){
 
 	std::cout << "param.kSVDiteration = " << param.kSVDiteration << std::endl ;
 	/*
@@ -156,31 +156,28 @@ void kSVD(std::vector<float> inputData, std::vector<float> &dictionary, kSVDPara
 	OMPParameters OMPParam; 
 	OMPParam.nAtoms = param.nAtoms; 
 	OMPParam.featureSize = param.featureSize; 
-	OMPParam.L = 5 ;     
+	OMPParam.L = param.sparsityThres ;     
 
 	for(int iter = 0 ; iter < param.kSVDiteration ; iter++){
     
-      std::cout <<"training iteration = " << iter << std::endl ;
-		
+      std::cout <<"kSVD training iteration = " << iter << ": " ;
 		//find sparse codes  
-      std::cout << "Finding sparse code... " << std::endl ;
-      std::vector<float> sparseCode = omp(inputData, dictionary,OMPParam);
-
-	//	for(int i = 0 ; i < 10 ; i++){
-	//		std::cout << "sparsecode col  = " <<i + 1 << std::endl ;
-	  // 	copy(sparseCode.begin() + i*param.nAtoms, sparseCode.begin() + (i+1)*param.nAtoms, std::ostream_iterator<float>(std::cout, " ")); std::cout << std::endl;
-  		//	std::cin.get() ;
-	//	}
-
-
+      //std::cout << "Finding sparse code... " << std::endl ;
+      double omp_timeStart = get_seconds(); 
+      sparseCode = omp(inputData, dictionary,OMPParam);
+		double omp_timeEnd = get_seconds(); 
 
 		//update dictionary 
-      std::cout << " Updating dictionary " << std::endl ;
+      //std::cout << " Updating dictionary " << std::endl ;
+      double updateDic_timeStart = get_seconds(); 
       kSVD_update_dictionary(inputData,sparseCode,dictionary,param);
+		double updateDic_timeEnd = get_seconds(); 
 		
       //compute rescontruction error ||Y - DX|
       float resError = kSVD_compute_rescontruction_error(inputData,dictionary,sparseCode,param);
-      std::cout << " resconstruction Error = " << resError << std::endl ;
+      std::cout << "total error = " << resError << std::endl ;
+		std::cout << "OMP: " << (omp_timeEnd - omp_timeStart)*1e3 << " ms" << std::endl ; 
+		std::cout << "Update Dictionary: " << (updateDic_timeEnd - updateDic_timeStart)*1e3 << " ms" << std::endl ;
      // std::cin.get();  
 	}
 
